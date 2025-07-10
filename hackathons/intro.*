@@ -1,1 +1,1 @@
-// Generic placeholder for addition
+// Generic placeholder for subtraction
