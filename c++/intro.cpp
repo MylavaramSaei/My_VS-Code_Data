@@ -4,3 +4,16 @@ int main() {
     std::cout << "Difference = " << a - b << std::endl;
     return 0;
 }
+
+// --- Multiplication Table (1 to 100) ---
+#include <iostream>
+using namespace std;
+int main() {
+    for(int i = 1; i <= 100; i++) {
+        cout << "Table of " << i << ":\n";
+        for(int j = 1; j <= 10; j++)
+            cout << i << " x " << j << " = " << i*j << endl;
+        cout << endl;
+    }
+    return 0;
+}

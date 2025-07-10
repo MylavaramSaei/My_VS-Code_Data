@@ -5,3 +5,4 @@ class Program {
         Console.WriteLine("Difference = " + (a - b));
     }
 }
+// Multiplication table not supported for: c#/intro.cs
