@@ -8,3 +8,21 @@ for (let i = 1; i <= 100; i++) {
     }
     console.log();
 }
+
+// --- Calculator Program ---
+const readline = require('readline').createInterface({
+  input: process.stdin, output: process.stdout
+});
+readline.question('Enter operator (+, -, *, /): ', op => {
+  readline.question('Enter two numbers: ', input => {
+    const [a, b] = input.split(' ').map(Number);
+    switch(op) {
+      case '+': console.log(a + b); break;
+      case '-': console.log(a - b); break;
+      case '*': console.log(a * b); break;
+      case '/': b !== 0 ? console.log(a / b) : console.log("Divide by zero error"); break;
+      default: console.log("Invalid operator");
+    }
+    readline.close();
+  });
+});
