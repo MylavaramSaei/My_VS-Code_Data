@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Love Proposal</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: white;
+      margin-bottom: 10px;
+      animation: slideIn 2s ease-out forwards;
+    }
+
+    p, #dayCounter {
+      font-size: 1.2em;
+      color: white;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      background: red;
+      position: relative;
+      transform: rotate(-45deg);
+      margin: 30px auto;
+      animation: heartbeat 1s infinite;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      width: 100px;
+      height: 90px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-yes {
+      background-color: #ff4d4d;
+      color: white;
+    }
+
+    .btn-no {
+      background-color: white;
+      color: #ff4d4d;
+      border: 2px solid #ff4d4d;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1) rotate(-45deg); }
+      50% { transform: scale(1.1) rotate(-45deg); }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Falling hearts */
+    .falling-heart {
+      position: fixed;
+      top: -30px;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: fall linear infinite;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    .falling-heart::before, .falling-heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .falling-heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .falling-heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background music -->
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Page content -->
+  <h1>Will You Be Mine? 💕</h1>
+  <div class="heart"></div>
+  <p>From the moment I met you,<br> I knew you were someone special.</p>
+  <div id="dayCounter">Days since 11 Dec 2018: ...</div>
+
+  <div style="margin-top: 30px;">
+    <button class="btn btn-yes" onclick="alert('Yay! You said YES! 💖')">Yes</button>
+    <button class="btn btn-no" onclick="alert('No? 😢 Just kidding! You can’t say no 💘')">No</button>
+  </div>
+
+  <!-- Day counter -->
+  <script>
+    function updateDayCounter() {
+      const startDate = new Date("2018-12-11T00:00:00");
+      const now = new Date();
+      const diffTime = now - startDate;
+      const daysPassed = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      document.getElementById('dayCounter').textContent =
+        `Days since 11 Dec 2018: ${daysPassed} day${daysPassed === 1 ? '' : 's'}`;
+    }
+    updateDayCounter();
+    setInterval(updateDayCounter, 1000);
+
+    // Falling hearts animation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('falling-heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>

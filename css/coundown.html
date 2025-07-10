@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Love Proposal</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: white;
+      margin-bottom: 0.5em;
+      animation: slideIn 2s ease-out forwards;
+    }
+
+    p {
+      font-size: 1.5em;
+      color: #fff;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    #dayCounter {
+      font-size: 2em;
+      color: #fff;
+      margin-top: 20px;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      background: red;
+      position: relative;
+      transform: rotate(-45deg);
+      margin: 40px auto;
+      animation: heartbeat 1s infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 100px;
+      height: 90px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1) rotate(-45deg); }
+      50% { transform: scale(1.1) rotate(-45deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Will You Be Mine? 💕</h1>
+    <div class="heart"></div>
+    <p>From the moment I met you,<br> I knew you were someone special.<br><strong>Will you be my forever?</strong></p>
+    <div id="dayCounter">Days since 11 Dec 2018: ...</div>
+  </div>
+
+  <script>
+    function updateDayCounter() {
+      const startDate = new Date("2018-12-11T00:00:00");
+      const now = new Date();
+
+      // Calculate time difference in milliseconds
+      const diffTime = now - startDate;
+      
+      // Convert to days
+      const daysPassed = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      
+      // Update content
+      document.getElementById('dayCounter').textContent =
+        `Days since 11 Dec 2018: ${daysPassed} day${daysPassed === 1 ? '' : 's'}`;
+    }
+
+    // Update every second in case someone leaves it open
+    updateDayCounter();
+    setInterval(updateDayCounter, 1000);
+  </script>
+</body>
+</html>
